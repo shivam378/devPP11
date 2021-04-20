@@ -1,1 +1,1 @@
-git 
+git s,ls;s'/s'
