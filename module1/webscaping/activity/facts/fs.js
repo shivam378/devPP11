@@ -9,4 +9,7 @@ let htmlkadata = fs.readFileSync("index.html", "utf8");
 //console.log(htmlkadata); // we have stringified html dile!!
  //html file os loaded in cheerio
  let myDocument = cheerio.load(htmlkadata)
+ let h1kadata = myDocument("h1").text();
+ console.log(h1kadata)
+ 
  
