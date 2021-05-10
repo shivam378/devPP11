@@ -8,9 +8,9 @@ request(matchlink, function(err, res , data){
 function processData(html){
     let myDocument =cheerio.load(html);
     let aTag = myDocument(".widget-items.cta-link a");
-    //console.log(atag);
+   // console.log(aTag);
     //console.log( atag.attr("href") );
     let allmactchesLink ="https://www.espncricinfo.com" + aTag["0"].attribs.href;
-    //console.log(allmactchesLink);
+    // console.log(allmactchesLink);
     getAllMatches(allmactchesLink);
-}
+} 
