@@ -39,10 +39,24 @@ function checkTeamFolder(teamname){
     return fs.existsSync(teamfolderPath);
 }
 function checkbatsmanfile(teamname, batsman){
+
 }
 function updateBatsmanfile(teamname, batsman , runs, balls, fours, sixes, strikerate){
+
 }
 function creatbatsmanfile(teamname, batsman , runs, balls, fours, sixes, strikerate){
+    let batsmanFilepath=`./IPL/${teamname}/${batsman}.json`
+    let BatsmanFile= [];
+    let ining={
+        Runs : runs,
+        balls : balls,
+        Fours : fours,
+        sixes: sixes,
+        strikerate : strikerate
+    }
+    BatsmanFile.push(ining);
+    fs.writeFileSync( batsmanFilepath, BatsmanFile);
+
 
 }
 function createTeamFolder(teamname){
