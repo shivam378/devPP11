@@ -39,9 +39,22 @@ function checkTeamFolder(teamname){
     return fs.existsSync(teamfolderPath);
 }
 function checkbatsmanfile(teamname, batsman){
-
+    //"./IPL/Delhi capitals/ Rishabh pant. json";
+    let batsmanFilepath= `./IPL/${teamname}/${batsman}.json`;
+    return fs.existsSync(batsmanFilepath);
 }
 function updateBatsmanfile(teamname, batsman , runs, balls, fours, sixes, strikerate){
+    let batsmanFilepath=`./IPL/${teamname}/${batsman}.json`
+    let BatsmanFile= JSON.parse(fs.readFileSync(batsmanFilepath));
+    let ining={
+        Runs : runs,
+        balls : balls,
+        Fours : fours,
+        sixes: sixes,
+        strikerate : strikerate
+    }
+    BatsmanFile.push(ining);
+    fs.writeFileSync(batsmanFilepath, JSON.stringify(BatsmanFile));
 
 }
 function creatbatsmanfile(teamname, batsman , runs, balls, fours, sixes, strikerate){
@@ -55,9 +68,7 @@ function creatbatsmanfile(teamname, batsman , runs, balls, fours, sixes, striker
         strikerate : strikerate
     }
     BatsmanFile.push(ining);
-    fs.writeFileSync( batsmanFilepath, BatsmanFile);
-
-
+    fs.writeFileSync( batsmanFilepath, JSON.stringify(BatsmanFile));
 }
 function createTeamFolder(teamname){
     let teamfolderPath= `./IPL/${teamname}`;

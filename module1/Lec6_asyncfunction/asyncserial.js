@@ -13,3 +13,6 @@ fs.readFile("./f1.txt" , function(err, data){
         })
     })
 })
+
+
+//above function is callback hell
