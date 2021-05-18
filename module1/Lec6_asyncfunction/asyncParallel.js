@@ -1,5 +1,5 @@
 const fs = require("fs");
-let files = ["../f1.txt" , "../f2.txt" , "../f3.txt"];
+let files = ["./f1.txt" , "./f2.txt" , "./f3.txt"];
 // async code
 // simultaneous process
 console.log("start");
@@ -11,3 +11,4 @@ for(let i=0 ; i<files.length ; i++){
 }
 
 console.log("end");
+
