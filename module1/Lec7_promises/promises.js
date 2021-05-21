@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 // sync function
-// async function \
+// async function 
 // promisifed function
 
 let pendingPromise = fs.promises.readFile("./f1.txt" , "utf8");
