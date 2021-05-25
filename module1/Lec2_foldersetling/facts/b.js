@@ -6,12 +6,11 @@ let name = "Steve";
 // }
 
 
-// module.exports.name = name;
+module.exports.name = name;
 // module.exports.something = "something";
 // {
 //     name:"Steve"
 //
 
-module.exports = name;
-
-// module.exports = "steve";
+//module.exports = name;
+ module.exports = "steve";
