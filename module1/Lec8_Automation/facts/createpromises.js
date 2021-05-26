@@ -1,4 +1,3 @@
-//how to make our own promises
 let fs = require("fs");
 
 function myPromisifiedFun(filePath){
