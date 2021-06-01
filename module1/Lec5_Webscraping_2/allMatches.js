@@ -15,7 +15,6 @@ function processData(html){
         let matchLink =  "https://www.espncricinfo.com" + myDocument(allATags[i]).attr("href");
        // console.log(matchLink);
        getMatchdetails(matchLink);
-
     }
 }   
 
