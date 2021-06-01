@@ -12,11 +12,8 @@
 
 // then() and catch() functions are async functions !
 // then and catch also returns a pending promise also known as thenKaPromise
-
 const fs = require("fs");
-
 let f1KaPromise = fs.promises.readFile("./f1.txt");
-
 f1KaPromise.then(function(f1KaData){
     console.log(f1KaData+"");
     let f2KaPromise = fs.promises.readFile("./f2.txt");

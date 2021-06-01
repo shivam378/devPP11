@@ -10,14 +10,12 @@ console.log(pendingPromise);
 
 // promise ka object uske pass do function then() and catch();
 
-
 // then function attaches a success callback to the pendingPromise
 pendingPromise.then( function(data){
     console.log("Inside scb");
     console.log(pendingPromise);
     console.log(data+"");
 } );
-
 
 // catch function attaches a failure callback to the pendingPromise
 pendingPromise.catch( function(error){
