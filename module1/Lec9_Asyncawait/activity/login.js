@@ -8,6 +8,7 @@ async function login(){
         headless: false,
         defaultViewport: null,
         args: ["--start-maximized"],
+        slowMo : 1
       });
     let pages = await browser.pages();
     let tab = pages[0];
@@ -29,10 +30,17 @@ async function login(){
     let createChallengeElement = await tab.$('.btn.btn-green.backbone.pull-right');
     let createChallengeLink = await tab.evaluate( function(elem){ return elem.getAttribute("href"); }   ,  createChallengeElement)
     createChallengeLink = "https://www.hackerrank.com"+createChallengeLink;
-    //console.log(createChallengeLink);
+    // console.log(createChallengeLink);
+    for(let i=0 ; i<challenges.length ; i++){
+        await addChallenges(browser , createChallengeLink , challenges[i]);
+    }
+};
+login();
+async function addChallenges(browser , createChallengeLink , challenge){
+    let newTab = await browser.newPage();
     // add one challenge
     // tab , challenge
-    let challenge = challenges[0];
+    await newTab.goto(createChallengeLink);
     // {
     //     "Challenge Name": "Pep_Java_1GettingStarted_1IsPrime",
     //     "Description": "Question 1",
@@ -42,25 +50,23 @@ async function login(){
     //     "Output Format": "String",
     //     "Tags": "Basics",
     //   }
-    async function addchallenges(browser,createChallengeLink,challenge){
-        let newtab= await browser.newPage();
-
-        await newtab.goto(createChallengeElement)
-
-        let challengename= challenge["Challenge Name"];
-        let description = challenge["Description"];
-        let problemstatement=challenge["Problem Statement"];
-        let inputformat=challenge["Input Format"];
-        let constraints=challenge['Constraints'];
-        let OutputFormat=challenge['Output Format'];
-        let tag=challenge['Tags'];
-
-        await newtab.waitForTimeout(2000);
-        await newtab.type('#name', challengename);
-        await newtab.type('#preview',description);
-        await newtab.type('', problemstatement)
-
-    }
-};
-
-login();
+    let challengeName = challenge["Challenge Name"];
+    let description = challenge["Description"];
+    let problemStatement = challenge["Problem Statement"];
+    let inputFormat = challenge["Input Format"];
+    let constraints = challenge["Constraints"];
+    let outputFormat = challenge["Output Format"];
+    let tags = challenge["Tags"];
+    await newTab.waitForTimeout(2000);
+    await newTab.type("#name" , challengeName);
+    await newTab.type("#preview" , description);
+    await newTab.type('#problem_statement-container .CodeMirror textarea' , problemStatement);
+    await newTab.type('#input_format-container .CodeMirror textarea' , inputFormat);
+    await newTab.type('#constraints-container .CodeMirror textarea' , constraints);
+    await newTab.type('#output_format-container .CodeMirror textarea' , outputFormat);
+    await newTab.type('#tags_tag' , tags);
+    await newTab.keyboard.press("Enter");
+    await newTab.click('.save-challenge.btn.btn-green');
+    await newTab.waitForTimeout(3000);
+    await newTab.close();
+}

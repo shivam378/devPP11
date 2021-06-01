@@ -1,17 +1,24 @@
 const puppeteer = require("puppeteer");
-const id="shivambhandari378@gmail.com"
-const pw="12Shivam@"
+const id="getekiw752@slowimo.com"
+const pw="testingpassword"
+const cheerio="cheerio";
+const fs= "fs";
 let tab;
 let idx;
 let gCode;
+
 // puppeteer has promisfied functions
+
 // by default headless = true
+
 let browserOpenPromise = puppeteer.launch({
   headless: false,
   defaultViewport: null,
   args: ["--start-maximized"],
 });
-browserOpenPromise.then(function (browser) {
+
+browserOpenPromise
+  .then(function (browser) {
     console.log("browser is opened !");
     return browser.pages();
   })
@@ -50,7 +57,7 @@ browserOpenPromise.then(function (browser) {
     let allPendingPromises = [];
     for (let i = 0; i < allQuesArray.length; i++) {
       let oneATag = allQuesArray[i];
-      let pendingPromise = oneATag.evaluate(function (element) { return element.getAttribute("href");}  , oneATag);
+      let pendingPromise = tab.evaluate(function (element) { return element.getAttribute("href");}  , oneATag);
       allPendingPromises.push(pendingPromise);
     }
     // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
@@ -206,9 +213,7 @@ browserOpenPromise.then(function (browser) {
       })
     });
   }
-
-
-function waitAndClick(selector) {
+ function waitAndClick(selector) {
   return new Promise(function (scb, fcb) {
     let waitPromise = tab.waitForSelector(selector, { visible: true });
     waitPromise
@@ -222,4 +227,4 @@ function waitAndClick(selector) {
         fcb();
       });
   });
-}
+ }
