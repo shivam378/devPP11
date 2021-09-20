@@ -77,3 +77,14 @@ let mediaRecorder;
     aTag.click();
   });
 })();
+
+for(let i=0;i<filters.length;i++){
+    filters[i].addEventListener("click" ,function(e){
+        let currentFilterSelected=e.target.style.backgroundColoe;
+        if(currentFilterSelected==""){
+            if(document.querySelector(".filter-div")){
+                document
+            }
+        }
+    })
+}
